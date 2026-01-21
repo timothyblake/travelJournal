@@ -41,18 +41,14 @@ get_header(); ?>
 
 <?php endwhile; endif; ?>
 
-    <?php // Related posts: dynamic by category (fallbacks to recent posts)
+    <?php // Related posts: show 3 most recent posts (exclude current)
     $related_args = array(
         'posts_per_page'      => 3,
         'post__not_in'        => array( get_the_ID() ),
         'ignore_sticky_posts' => 1,
+        'orderby'             => 'date',
+        'order'               => 'DESC',
     );
-
-    // Try to use categories if available
-    $cats = get_the_category();
-    if ( ! empty( $cats ) ) {
-        $related_args['category__in'] = wp_list_pluck( $cats, 'term_id' );
-    }
 
     $related_query = new WP_Query( $related_args );
     if ( $related_query->have_posts() ) : ?>

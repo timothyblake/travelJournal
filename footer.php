@@ -1,11 +1,8 @@
-    <footer id="site-footer">
-        <div class="wrap">
-            <p class="text-center pt-4">&copy; <?php echo date('Y'); ?> <?php bloginfo('name'); ?> All rights reserved.
-
-</p>
-        </div>
-    </footer>
-
+<footer id="site-footer">
+      <div class="wrap">
+          <p class="text-center pt-4">&copy; <?php echo date('Y'); ?> <?php bloginfo('name'); ?> All rights reserved.</p>
+      </div>
+  </footer>
 
 <div class="fixed-sidebar-left bg-white p-2" aria-hidden="false">
     <div class="social-share d-flex flex-column align-items-center gap-2">
@@ -39,33 +36,7 @@
         </svg>
       </button>
     </div>
-
-   
-
-    <script>
-      (function(){
-        function openShare(network){
-          const url = encodeURIComponent(location.href);
-          const title = encodeURIComponent(document.title || '');
-          let shareUrl = '';
-          switch(network){
-            case 'twitter': shareUrl = `https://twitter.com/intent/tweet?text=${title}&url=${url}`; break;
-            case 'facebook': shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${url}`; break;
-            case 'linkedin': shareUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${url}`; break;
-            case 'email': shareUrl = `mailto:?subject=${title}&body=${url}`; break;
-          }
-          if(shareUrl) window.open(shareUrl, '_blank', 'noopener');
-        }
-        document.querySelectorAll('.share-btn').forEach(btn=>{
-          btn.addEventListener('click', function(e){
-            e.preventDefault();
-            openShare(this.dataset.network);
-          });
-        });
-      })();
-    </script>
-  </div></svg>
-
+  </div>
 
   <!-- Fixed right sidebar with hamburger -->
   <div class="fixed-sidebar" aria-hidden="false">
@@ -100,40 +71,6 @@
 
   <!-- Bootstrap JS bundle (includes Popper) -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-  <script>
-    // Set current year in footer
-    document.getElementById('year').textContent = new Date().getFullYear();
-  </script>
-  <script>
-    (function(){
-      const btn = document.getElementById('sidebarToggle');
-      const menu = document.getElementById('fullscreenMenu');
-      function openMenu(){
-        btn.classList.add('active');
-        menu.classList.add('open');
-        document.body.classList.add('menu-open');
-        btn.setAttribute('aria-expanded','true');
-        menu.setAttribute('aria-hidden','false');
-      }
-      function closeMenu(){
-        btn.classList.remove('active');
-        menu.classList.remove('open');
-        document.body.classList.remove('menu-open');
-        btn.setAttribute('aria-expanded','false');
-        menu.setAttribute('aria-hidden','true');
-      }
-      btn.addEventListener('click', function(e){
-        if(menu.classList.contains('open')) closeMenu(); else openMenu();
-      });
-      // Close when clicking outside menu content
-      menu.addEventListener('click', function(e){
-        if(e.target === menu) closeMenu();
-      });
-      // Close on escape
-      document.addEventListener('keydown', function(e){ if(e.key === 'Escape') closeMenu(); });
-    })();
-  </script>
-
 
     <?php wp_footer(); ?>
 </body>

@@ -61,6 +61,9 @@ function traveljournal_scripts() {
     if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
         wp_enqueue_script( 'comment-reply' );
     }
+
+    // Enqueue theme JS (in footer)
+    wp_enqueue_script( 'traveljournal-theme', get_stylesheet_directory_uri() . '/assets/js/theme.js', array(), wp_get_theme()->get('Version'), true );
 }
 add_action( 'wp_enqueue_scripts', 'traveljournal_scripts' );
 
