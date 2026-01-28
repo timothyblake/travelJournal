@@ -29,6 +29,13 @@
         </svg>
       </button>
 
+      <button type="button" class="btn btn-link p-1 share-btn text-black" data-network="pinterest" aria-labelledby="share-label" title="Share on Pinterest">
+        <!-- Pinterest SVG -->
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+          <path d="M12 2C6.48 2 2 6.48 2 12c0 4.24 2.63 7.86 6.35 9.35-.09-.79-.17-2 .04-2.86.19-.78 1.24-5.27 1.24-5.27s-.32-.63-.32-1.57c0-1.47.85-2.57 1.91-2.57.9 0 1.34.68 1.34 1.49 0 .91-.58 2.27-.88 3.53-.25 1.06.53 1.92 1.58 1.92 1.9 0 3.36-2 3.36-4.89 0-2.55-1.83-4.34-4.45-4.34-3.03 0-4.81 2.27-4.81 4.62 0 .92.35 1.9.79 2.43.09.1.1.19.07.3-.08.32-.26 1.05-.29 1.2-.04.19-.15.23-.34.14-1.33-.62-2.16-2.57-2.16-4.14 0-3.37 2.45-6.46 7.06-6.46 3.71 0 6.59 2.64 6.59 6.17 0 3.68-2.32 6.64-5.54 6.64-1.08 0-2.1-.56-2.45-1.23 0 0-.54 2.05-.67 2.55-.24.95-.9 2.14-1.34 2.87C9.26 21.84 10.61 22 12 22c5.52 0 10-4.48 10-10S17.52 2 12 2z"/>
+        </svg>
+      </button>
+
       <button type="button" class="btn btn-link p-1 share-btn text-black" data-network="email" aria-labelledby="share-label" title="Share via Email">
         <!-- Email SVG -->
         <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">

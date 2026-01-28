@@ -10,8 +10,12 @@ License URI: https://www.gnu.org/licenses/gpl-2.0.html
 Text Domain: traveljournal
 */
 
+html {
+  scroll-behavior: smooth;
+}
+
 body, button, input, select, textarea {
-  font-family: 'Merriweather', serif;
+  font-family: 'Merriweather', Georgia, 'Times New Roman', Times, serif;
 }
 
 h2, h3, h4, h5, h6 {
@@ -47,12 +51,20 @@ h2, h3, h4, h5, h6 {
     border-radius: 30px;
     margin-top: 20px;
     text-decoration: none;
+    transition: background-color 300ms ease, color 300ms ease, transform 200ms ease;
+}
+
+.btn-rounded:hover {
+    background: #000;
+    color: #fff;
+    text-decoration: none;
+    transform: translateY(-2px);
 }
 
 
 /* The Main Title */
 .main-title {
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
   font-weight: 700; /* Or 800 for extra chunkiness */
   text-transform: uppercase;
   font-size: 50px !important; /* Adjust based on viewport */
@@ -64,7 +76,7 @@ h2, h3, h4, h5, h6 {
 
 /* The Subtitle */
 .subtitle {
-  font-family: 'Merriweather', serif;
+  font-family: 'Merriweather', Georgia, 'Times New Roman', Times, serif;
   font-style: italic;
   font-weight: 300; /* Light italic often looks cleaner */
   font-size: 28px;
@@ -73,7 +85,7 @@ h2, h3, h4, h5, h6 {
 
 .main-title-secondary{
   font-size: 40px;
-    font-family: 'Montserrat', sans-serif;
+  font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
   font-weight: 700; /* Or 800 for extra chunkiness */
   text-transform: uppercase;
   line-height: 1.1;
@@ -83,7 +95,7 @@ h2, h3, h4, h5, h6 {
 
 
 .subtitle-secondary {
-  font-family: 'Merriweather', serif;
+  font-family: 'Merriweather', Georgia, 'Times New Roman', Times, serif;
   font-style: italic;
   font-weight: 300; /* Light italic often looks cleaner */
   font-size: 18px;
@@ -220,6 +232,17 @@ body {
 .hamburger.active .bar:nth-child(2) { opacity: 0; }
 .hamburger.active .bar:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
 
+/* Mobile hamburger in header */
+.mobile-hamburger {
+  display: none;
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  z-index: 1000;
+  background: rgba(255,255,255,0.9);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
 /* Fullscreen menu overlay */
 .fullscreen-menu {
   position: fixed;
@@ -325,7 +348,7 @@ a.stretched-link.primary-button{
 /* Hover / focus state */
 a.stretched-link.primary-button:hover,
 a.stretched-link.primary-button:focus{
-  background-color: #444; 
+  background-color: #000;
   box-shadow: 0 8px 20px rgba(0,0,0,0.35);
   transform: translateY(-2px);
   text-decoration: none;
@@ -337,7 +360,7 @@ a.stretched-link.primary-button:focus{
 a.stretched-link.primary-button:active{
   transform: translateY(0) scale(0.995);
   box-shadow: 0 4px 10px rgba(0,0,0,0.28);
-  background-color: #3b3b3b;
+  background-color: #000;
 }
 
 /* Visible focus ring for keyboard users */
@@ -377,12 +400,184 @@ p{
   color: #444;
 }
 
+/* Breadcrumbs Navigation */
+.breadcrumb-wrapper {
+  background: #000;
+  padding: 15px 0;
+  margin-bottom: 0;
+}
+
+.breadcrumbs {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.breadcrumb-list {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+  font-size: 14px;
+}
+
+.breadcrumb-item {
+  display: inline-flex;
+  align-items: center;
+}
+
+.breadcrumb-item a {
+  color: #ccc;
+  text-decoration: none;
+  transition: color 200ms ease;
+}
+
+.breadcrumb-item a:hover {
+  color: #fff;
+  text-decoration: underline;
+}
+
+.breadcrumb-current {
+  color: #fff;
+  font-weight: 600;
+  max-width: 300px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.breadcrumb-separator {
+  color: #666;
+  margin: 0 8px;
+  user-select: none;
+}
+
+/* Pinterest Pin It button on image hover */
+.pin-it-wrapper {
+  position: relative;
+  display: block;
+  margin: 0 auto;
+  width: fit-content;
+  max-width: 100%;
+}
+
+.pin-it-wrapper img {
+  display: block;
+  width: auto;
+  max-width: 100%;
+  height: auto;
+}
+
+.pin-it-btn {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  background: #E60023;
+  color: #fff;
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 700;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  opacity: 0;
+  transform: scale(0.9);
+  transition: opacity 280ms ease, transform 280ms cubic-bezier(.16,.84,.34,1), box-shadow 220ms ease;
+  z-index: 10;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+  cursor: pointer;
+  border: none;
+  font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+  white-space: nowrap;
+}
+
+.pin-it-wrapper:hover .pin-it-btn {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.pin-it-btn:hover {
+  background: #AD081B;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.35);
+  transform: translateY(-2px);
+}
+
+.pin-it-btn:active {
+  transform: translateY(0) scale(0.98);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+}
+
+.pin-it-btn svg {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+}
+
+/* Back to Top Button */
+.back-to-top {
+  position: fixed;
+  bottom: 30px;
+  right: 150px;
+  width: 50px;
+  height: 50px;
+  background: #fff;
+  border: 2px solid rgba(0,0,0,0.1);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(10px);
+  transition: opacity 300ms ease, visibility 300ms ease, transform 300ms ease, box-shadow 250ms ease, border-color 250ms ease;
+  z-index: 9990;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  text-decoration: none;
+}
+
+.back-to-top.visible {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.back-to-top:hover {
+  border-color: rgba(0,0,0,0.2);
+  box-shadow: 0 6px 16px rgba(0,0,0,0.15);
+  transform: translateY(-3px);
+}
+
+.back-to-top:active {
+  transform: translateY(-1px);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.back-to-top svg {
+  color: #000;
+  width: 24px;
+  height: 24px;
+}
+
 
 
 /* Hide the fixed sidebar and remove extra padding on small screens */
 @media (max-width: 768px) {
   body {
     padding: 0;
+  }
+
+  /* Show mobile hamburger, hide desktop one */
+  .mobile-hamburger {
+    display: inline-flex !important;
+  }
+
+  header {
+    padding: 15px 0;
   }
 
   .post-hero.vh-75{
@@ -398,6 +593,11 @@ p{
     margin-top: 20px;
     text-decoration: none;
 }
+
+  .btn-rounded:hover {
+    background: #000;
+    color: #fff;
+  }
 
   .main-title{
     font-size: 32px !important;
@@ -438,5 +638,38 @@ p{
     margin: 20px 30px;
 }
 
+  /* Adjust back to top button on mobile */
+  .back-to-top {
+    bottom: 20px;
+    right: 20px;
+    width: 45px;
+    height: 45px;
+  }
+
+  .back-to-top svg {
+    width: 20px;
+    height: 20px;
+  }
+
+  /* Breadcrumbs on mobile */
+  .breadcrumb-wrapper {
+    padding: 12px 0;
+  }
+
+  .breadcrumbs {
+    padding: 0 15px;
+  }
+
+  .breadcrumb-list {
+    font-size: 13px;
+  }
+
+  .breadcrumb-separator {
+    margin: 0 6px;
+  }
+
+  .breadcrumb-current {
+    max-width: 200px;
+  }
 
 }

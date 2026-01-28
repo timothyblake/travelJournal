@@ -1,5 +1,5 @@
 <?php
-// Minimal index.php for travelJournal theme — loop layout: large, small, small, large, repeat
+// Minimal index.php for travelJournal theme — loop layout: full, half, half, repeat
 get_header(); ?>
 
 <main class="row gy-1 gx-1">
@@ -7,18 +7,18 @@ get_header(); ?>
 <?php if ( have_posts() ) :
     $i = 0;
     while ( have_posts() ) : the_post();
-        $pos = $i % 4;
+        $pos = $i % 3;
 
         // Determine layout and image size
-        if ( in_array( $pos, array(0, 3), true ) ) {
-            // Large article
+        if ( $pos === 0 ) {
+            // Full-width article
             $article_class = 'col-12 article-post';
             $img_size = 'featured-xl';
             $title_class = 'main-title fw-bolder text-uppercase';
             $subtitle_class = 'subtitle';
             $wrapper_class = 'full-width-article';
         } else {
-            // Small article
+            // Half-width article
             $article_class = 'col-12 col-md-6 article-half article-post';
             $img_size = 'featured-medium';
             $title_class = 'main-title-secondary fw-bolder text-uppercase';
