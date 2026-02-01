@@ -55,7 +55,7 @@ function traveljournal_image_sizes_names( $sizes ) {
 add_filter( 'image_size_names_choose', 'traveljournal_image_sizes_names' );
 
 function traveljournal_scripts() {
-    wp_enqueue_style( 'traveljournal-style', get_stylesheet_uri(), array(), wp_get_theme()->get('Version') );
+    wp_enqueue_style( 'traveljournal-style', get_stylesheet_uri(), array(), false );
 
     // Enqueue comment-reply script when needed
     if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
@@ -63,7 +63,7 @@ function traveljournal_scripts() {
     }
 
     // Enqueue theme JS (in footer)
-    wp_enqueue_script( 'traveljournal-theme', get_stylesheet_directory_uri() . '/assets/js/theme.js', array(), wp_get_theme()->get('Version'), true );
+    wp_enqueue_script( 'traveljournal-theme', get_stylesheet_directory_uri() . '/assets/js/theme.js', array(), false, true );
 }
 add_action( 'wp_enqueue_scripts', 'traveljournal_scripts' );
 
@@ -388,3 +388,32 @@ function traveljournal_clear_cache_on_transition( $new_status, $old_status, $pos
     }
 }
 add_action( 'transition_post_status', 'traveljournal_clear_cache_on_transition', 10, 3 );
+
+/**
+ * Add lazy loading to post content images
+ */
+function traveljournal_lazy_load_images( $content ) {
+    if ( ! is_singular( 'post' ) ) {
+        return $content;
+    }
+
+    // Add loading="lazy" to images that don't already have it
+    $content = preg_replace_callback(
+        '/<img([^>]+)>/i',
+        function( $matches ) {
+            $img_tag = $matches[0];
+
+            // Skip if already has loading attribute
+            if ( strpos( $img_tag, 'loading=' ) !== false ) {
+                return $img_tag;
+            }
+
+            // Add loading="lazy" and decoding="async"
+            return str_replace( '<img', '<img loading="lazy" decoding="async"', $img_tag );
+        },
+        $content
+    );
+
+    return $content;
+}
+add_filter( 'the_content', 'traveljournal_lazy_load_images' );

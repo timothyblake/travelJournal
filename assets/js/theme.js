@@ -122,26 +122,38 @@
 
   // Back to Top button visibility
   var backToTopBtn = document.getElementById('backToTop');
-  if(backToTopBtn){
-    // Show/hide button on scroll
-    var scrollThreshold = 300;
-    function toggleBackToTop(){
-      if(window.pageYOffset > scrollThreshold){
+
+  // Reading Progress Bar
+  var progressBar = document.getElementById('readingProgress');
+
+  function updateScrollElements(){
+    var scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+    var docHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+
+    // Update progress bar
+    if(progressBar && docHeight > 0){
+      var progress = (scrollTop / docHeight) * 100;
+      progressBar.style.width = progress + '%';
+    }
+
+    // Update back to top button
+    if(backToTopBtn){
+      if(scrollTop > 300){
         backToTopBtn.classList.add('visible');
       } else {
         backToTopBtn.classList.remove('visible');
       }
     }
-
-    // Throttle scroll event for better performance
-    var scrollTimeout;
-    window.addEventListener('scroll', function(){
-      if(scrollTimeout) clearTimeout(scrollTimeout);
-      scrollTimeout = setTimeout(toggleBackToTop, 100);
-    });
-
-    // Check initial scroll position
-    toggleBackToTop();
   }
+
+  // Throttle scroll event for better performance
+  var scrollTimeout;
+  window.addEventListener('scroll', function(){
+    if(scrollTimeout) clearTimeout(scrollTimeout);
+    scrollTimeout = setTimeout(updateScrollElements, 10);
+  });
+
+  // Check initial state
+  updateScrollElements();
 
 })();

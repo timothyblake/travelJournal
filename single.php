@@ -2,6 +2,11 @@
 // Minimal single.php — fixed loop and balanced tags
 get_header(); ?>
 
+<!-- Reading Progress Bar -->
+<div class="reading-progress-container">
+    <div class="reading-progress-bar" id="readingProgress"></div>
+</div>
+
 <main id="site-content" class="wrap">
 
 <?php if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
